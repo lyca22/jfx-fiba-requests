@@ -1,6 +1,6 @@
 package datastr;
 
-public class Node<E> {
+public class Node<E> implements INode<E>{
 
 	private E element;
 	private Node<E> left;
@@ -41,6 +41,16 @@ public class Node<E> {
 	public E getPredecessor() {
 		//TODO Implement method.
 		return null;
+	}
+	
+	public int getBalance() {
+		//TODO Implement method.
+		return 0;
+	}
+	
+	public int getHeight() {
+		//TODO Implement method.
+		return 0;
 	}
 	
 }
