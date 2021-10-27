@@ -4,16 +4,28 @@ import java.util.List;
 
 public class BinaryTree<E, P> implements IBinaryTree<E, P>{
 
+	private Node<E> root;
+
+	public BinaryTree() {}
+
+	public Node<E> getRoot() {
+		return root;
+	}
+
+	public void setRoot(Node<E> root) {
+		this.root = root;
+	}
+
 	@Override
 	public void add(E element) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void delete(E element) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -23,7 +35,7 @@ public class BinaryTree<E, P> implements IBinaryTree<E, P>{
 	}
 
 	@Override
-	public List<E> searchList(P parameter, Criteria criterion) {
+	public List<E> searchList(P parameter, ComparisonCriteria criterion) {
 		// TODO Auto-generated method stub
 		return null;
 	}

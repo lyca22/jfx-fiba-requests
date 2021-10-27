@@ -1,10 +1,11 @@
 package datastr;
 
-public class Node<E> implements INode<E>{
+public class Node<E> implements IAVLNode<E>{
 
 	private E element;
 	private Node<E> left;
 	private Node<E> right;
+	private Node<E> parent;
 	
 	public Node(E element) {
 		setElement(element);
@@ -34,6 +35,14 @@ public class Node<E> implements INode<E>{
 		this.right = right;
 	}
 	
+	public Node<E> getParent() {
+		return parent;
+	}
+
+	public void setParent(Node<E> parent) {
+		this.parent = parent;
+	}
+
 	public E getSuccessor() {
 		//TODO Implement method.
 		return null;
@@ -42,14 +51,16 @@ public class Node<E> implements INode<E>{
 		//TODO Implement method.
 		return null;
 	}
-	
+
+	@Override
 	public int getBalance() {
-		//TODO Implement method.
+		// TODO Auto-generated method stub
 		return 0;
 	}
-	
+
+	@Override
 	public int getHeight() {
-		//TODO Implement method.
+		// TODO Auto-generated method stub
 		return 0;
 	}
 	
