@@ -1,6 +1,6 @@
 package datastr;
 
-public class Node<E extends Comparable<E>, P extends Comparable<P>> implements IAVLNode<E>{
+public class Node<E extends Comparable<E>, P extends Comparable<P>> implements IAVLNode<E, P>{
 
 	private E element;
 	private P parameter;
@@ -53,13 +53,29 @@ public class Node<E extends Comparable<E>, P extends Comparable<P>> implements I
 		this.parameter = parameter;
 	}
 
-	public E getSuccessor() {
-		//TODO Implement method.
-		return null;
+	public Node<E, P> getSuccessor() {
+		Node<E, P> successor = this;
+		if(successor.getLeft() != null) {
+			successor = successor.getLeft();
+			
+			while(successor.getRight() != null) {
+				successor = successor.getRight();
+			}
+		}
+
+		return successor;
 	}
-	public E getPredecessor() {
-		//TODO Implement method.
-		return null;
+	
+	public Node<E, P> getPredecessor() {
+		Node<E, P> predeccessor = this;
+		if(predeccessor.getRight() != null) {
+			predeccessor = predeccessor.getRight();
+			while(predeccessor.getLeft() != null) {
+				predeccessor = predeccessor.getLeft();
+			}
+		}
+		
+		return predeccessor;
 	}
 
 	@Override
