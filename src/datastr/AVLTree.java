@@ -21,7 +21,7 @@ public class AVLTree<E extends Comparable<E>, P extends Comparable<P>> extends B
 	}
 
 	@Override
-	public Node<E, P> search(P parameter) {
+	public Node<E, P> search(E element, P parameter) {
 		// TODO Auto-generated method stub
 		return null;
 	}

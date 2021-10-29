@@ -1,5 +1,6 @@
 package datastr;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implements IBinaryTree<E, P>{
@@ -101,19 +102,67 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 
 	@Override
 	public Node<E, P> search(E element, P parameter) {
-		// TODO Auto-generated method stub
-		return null;
+		return search(root, element, parameter);
+	}
+	
+	private Node<E, P> search(Node<E, P> current, E element, P parameter) {
+		
+		if(current == null || (current.getElement().equals(element) && current.getParameter().equals(parameter))) {
+			return current;
+		}else if(current.getParameter().compareTo(parameter) < 0){
+			return search(current.getRight(), element, parameter);
+		}else {
+			return search(current.getLeft(), element, parameter);
+		}
 	}
 
 	@Override
-	public List<E> searchList(P parameter, ComparisonCriteria criterion) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<E> searchList(P parameter, ComparisonCriteria criterion) {	
+		return searchList(root, parameter, criterion);
+	}
+
+	private ArrayList<E> searchList(Node<E, P> current, P parameter, ComparisonCriteria criterion) {
+		ArrayList<E> list = new ArrayList<E>();
+		if(current != null) {
+			if(isValid(current, parameter, criterion)) {
+				list.add(current.getElement());
+			}
+			list.addAll(searchList(current.getLeft(), parameter, criterion));
+			list.addAll(searchList(current.getRight(), parameter, criterion));
+		}
+		
+		return list;
+	}
+	
+	public boolean isValid(Node<E, P> node ,P parameter, ComparisonCriteria criterion) {
+		boolean valid = false;
+		switch (criterion) {
+		case MINOR:
+			valid = node.getParameter().compareTo(parameter) < 0;
+			break;
+		case MINOR_EQUAL:
+			valid = node.getParameter().compareTo(parameter) <= 0;
+			break;
+		case EQUAL:
+			valid = node.getParameter().compareTo(parameter) == 0;
+			break;
+		case GREATER_EQUAL:
+			valid = node.getParameter().compareTo(parameter) >= 0;
+			break;
+		case GREATER:
+			valid = node.getParameter().compareTo(parameter) > 0;
+			break;
+			
+		default:
+			break;
+		}
+		
+		return valid;
 	}
 
 	@Override
 	public E getMinimum() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
