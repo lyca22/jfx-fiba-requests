@@ -12,6 +12,10 @@ public class Node<E extends Comparable<E>, P extends Comparable<P>> implements I
 		setElement(element);
 		setParameter(parameter);
 	}
+	
+	public Node(E element) {
+		setElement(element);
+	}
 
 	public E getElement() {
 		return element;
