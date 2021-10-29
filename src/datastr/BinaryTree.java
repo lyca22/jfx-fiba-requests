@@ -162,20 +162,29 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 
 	@Override
 	public E getMinimum() {
-		
-		return null;
+		Node<E, P> current = root;
+		E minimum = null;
+		while(current != null) {
+			minimum = current.getElement();
+			current = current.getLeft();
+		}
+		return minimum;
 	}
 
 	@Override
 	public E getMaximum() {
-		// TODO Auto-generated method stub
-		return null;
+		Node<E, P> current = root;
+		E max = null;
+		while(current != null) {
+			max = current.getElement();
+			current = current.getRight();
+		}
+		return max;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return false;
+		return root == null;
 	}
 
 }
