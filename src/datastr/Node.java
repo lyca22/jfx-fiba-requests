@@ -1,6 +1,6 @@
 package datastr;
 
-public class Node<E extends Comparable<E>, P extends Comparable<P>> implements IAVLNode<E, P>{
+public class Node<E extends Comparable<E>, P extends Comparable<P>> implements INode<E, P>{
 
 	private E element;
 	private P parameter;
@@ -76,18 +76,6 @@ public class Node<E extends Comparable<E>, P extends Comparable<P>> implements I
 		}
 		
 		return predeccessor;
-	}
-
-	@Override
-	public int getBalance() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getHeight() {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 	
 	public int compareTo(Node<E, P> newNode) {

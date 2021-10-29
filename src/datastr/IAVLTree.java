@@ -1,9 +1,9 @@
 package datastr;
 
-public interface IAVLTree<E, P> {
+public interface IAVLTree<E extends Comparable<E>, P extends Comparable<P>> {
 	
-	public void leftRotate(Node<E> node);
-	public void rightRotate(Node<E> node);
-	public void balance(Node<E> node);
+	public void leftRotate(Node<E, P> node);
+	public void rightRotate(Node<E, P> node);
+	public void balance(Node<E, P> node);
 	
 }
