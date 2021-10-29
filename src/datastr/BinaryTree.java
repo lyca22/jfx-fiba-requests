@@ -48,12 +48,59 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 
 	@Override
 	public void delete(E element, P parameter) {
-		// TODO Auto-generated method stub
+		Node<E, P> node = search(element, parameter);
+		delete(node);
+	}
 
+	private void delete(Node<E, P> node) {
+		
+		if (node != null) {
+				
+			if(node.getLeft() == null && node.getRight() == null) {
+				
+				if(node.equals(root)) {
+					root = null;
+				}else {
+					if(node.getParent().compareTo(node) < 0) {
+						node.getParent().setRight(null);
+					}else {
+						node.getParent().setLeft(null);
+					}
+				}
+				
+				node.setParent(null);
+				
+			}else if(node.getLeft() != null || node.getRight() != null) {
+				
+				Node<E, P> child;
+				if(node.getLeft() == null) {
+					child = node.getRight();
+				}else {
+					child = node.getLeft();
+				}
+				
+				child.setParent(node.getParent());
+				
+				if(node == root) {
+					root = child;
+				}else if(node.compareTo(node.getParent()) <= 0) {
+					node.getParent().setLeft(child);
+				}else {
+					node.getParent().setRight(child);
+				}
+				
+			}else {
+				Node<E, P> successor = node.getSuccessor();
+				node.setElement(successor.getElement());
+				node.setParameter(successor.getParameter());
+				delete(node.getSuccessor());
+			}
+		}
+		
 	}
 
 	@Override
-	public Node<E, P> search(P parameter) {
+	public Node<E, P> search(E element, P parameter) {
 		// TODO Auto-generated method stub
 		return null;
 	}
