@@ -3,27 +3,57 @@ package datastr;
 public class AVLTree<E extends Comparable<E>, P extends Comparable<P>> extends BinaryTree<E, P> implements IAVLTree<E, P>, IAVLNode<E, P>{
 
 	@Override
-	public void leftRotate(Node<E, P> node) {
-		// TODO Auto-generated method stub
+	public void add(E element, P parameter) {
+		super.add(element, parameter);
+		Node<E, P> added = search(element, parameter);
+		balance(added);
+	}
+	
+	@Override
+	public Node<E, P> leftRotate(Node<E, P> node) {
+		Node<E, P> right = node.getRight();
+		Node<E, P> subOfRight = right.getLeft();
 		
+		
+		right.setLeft(node);
+		node.setRight(subOfRight);
+		return right;
 	}
 
 	@Override
-	public void rightRotate(Node<E, P> node) {
-		// TODO Auto-generated method stub
+	public Node<E, P> rightRotate(Node<E, P> node) {
+		Node<E, P> left = node.getLeft();
+		Node<E, P> subOfLeft = left.getRight();
 		
+		left.setRight(node);
+		left.setLeft(subOfLeft);
+		return left;
 	}
 
 	@Override
 	public void balance(Node<E, P> node) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Node<E, P> search(E element, P parameter) {
-		// TODO Auto-generated method stub
-		return null;
+		if(node != null) {
+			int balance = getBalance(node);
+			if(balance > 1 && node.compareTo(node.getLeft()) <= 0) {
+				rightRotate(node);
+			}
+			
+			if(balance < -1 && node.compareTo(node.getRight()) > 0) {
+				leftRotate(node);
+			}
+			
+			if(balance > 1 && node.compareTo(node.getLeft()) >= 0) {
+				node.setLeft(leftRotate(node.getLeft()));
+				rightRotate(node);
+			}
+			
+			if(balance < -1 && node.compareTo(node.getRight()) < 0) {
+				node.setRight(rightRotate(node.getRight()));
+				leftRotate(node);
+			}
+			
+			balance(node.getParent());
+		}
 	}
 
 	@Override
