@@ -187,4 +187,26 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 		return root == null;
 	}
 
+	@Override
+	public String inorder() {
+		String order = "";
+		order += inorder(root);
+		return order;
+	}
+
+	private String inorder(Node<E, P> node) {
+		String order = "";
+		if(node.getLeft() != null) {
+			order += inorder(node.getLeft()) + " ";
+		}
+		
+		order += node.getElement() + " ";
+		
+		if(node.getRight() != null) {
+			order+= inorder(node.getRight()) + " ";
+		}
+		
+		return order;
+	}
+
 }
