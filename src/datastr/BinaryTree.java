@@ -152,9 +152,6 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 		case GREATER:
 			valid = node.getParameter().compareTo(parameter) > 0;
 			break;
-			
-		default:
-			break;
 		}
 		
 		return valid;

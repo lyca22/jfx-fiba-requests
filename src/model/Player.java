@@ -1,6 +1,6 @@
 package model;
 
-public class Player {
+public class Player implements Comparable<Player>{
 
 	private String name;
 	private int age;
@@ -85,6 +85,12 @@ public class Player {
 
 	public void setAverageBounces(double averageBounces) {
 		this.averageBounces = averageBounces;
+	}
+
+	@Override
+	public int compareTo(Player o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 }
