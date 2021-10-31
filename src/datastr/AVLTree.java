@@ -10,6 +10,11 @@ public class AVLTree<E extends Comparable<E>, P extends Comparable<P>> extends B
 	}
 	
 	@Override
+	public void delete (E element, P parameter) {
+		//TODO
+	}
+	
+	@Override
 	public Node<E, P> leftRotate(Node<E, P> node) {
 		Node<E, P> right = node.getRight();
 		Node<E, P> subOfRight = right.getLeft();
