@@ -29,7 +29,7 @@
          </cursor>
       </FontAwesomeIconView>
       <JFXToggleButton fx:id="btnEdit" layoutX="599.0" layoutY="26.0" onAction="#editFields" text="Edit" />
-      <JFXButton layoutX="397.0" layoutY="486.0" onAction="#editPlayer" text="Save Changes" />
+      <JFXButton fx:id="btnSaveChanges" layoutX="355.0" layoutY="496.0" onAction="#editPlayer" text="Save Changes" />
       <Pane fx:id="playerFieldsPane" layoutX="126.0" layoutY="91.0" prefHeight="380.0" prefWidth="400.0">
          <children>
             <Text layoutX="154.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="playerFieldsPane" wrappingWidth="91.00000858306885" />

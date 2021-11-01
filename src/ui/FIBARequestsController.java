@@ -2,6 +2,7 @@ package ui;
 
 import java.io.IOException;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
@@ -68,6 +69,9 @@ public class FIBARequestsController {
 
     @FXML
     private JFXComboBox<?> chboxStat;
+    
+    @FXML
+    private JFXButton btnSaveChanges;
     
     public FIBARequestsController(FIBARequests fiba) {
 		this.fiba = fiba;
@@ -145,7 +149,15 @@ public class FIBARequestsController {
     
     @FXML
     void editFields(ActionEvent event) {
-
+    	boolean enable = btnEdit.isSelected();
+    	tfName.setEditable(enable);
+    	tfAge.setEditable(enable);
+    	tfTeam.setEditable(enable);
+    	tfAvgBlocks.setEditable(enable);
+    	tfAvgBounces.setEditable(enable);
+    	tfAvgScore.setEditable(enable);
+    	tfAvgSteals.setEditable(enable);
+    	btnSaveChanges.setDisable(!enable);
     }
     
     //searchStatPane methods
