@@ -18,8 +18,10 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 	}
 
 	@Override
-	public void add(E element, P parameter) {
-		Node<E, P> newNode = new Node<E, P>(element, parameter);
+	public void add(E element, P searchParameter) {
+
+		Node<E, P> newNode = new Node<E, P>(element, searchParameter);
+
 		if(root == null) {
 			root = newNode;
 		}else {
@@ -28,7 +30,6 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 	}
 
 	private void add(Node<E, P> current, Node<E, P> newNode) {
-		
 		if(newNode.compareTo(current) <= 0) {
 			if(current.getLeft() == null) {
 				current.setLeft(newNode);
@@ -44,7 +45,21 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 				add(current.getRight(), newNode);
 			}
 		}
-		
+	}
+
+	@Override
+	public Node<E, P> search(E element, P parameter) {
+		return search(root, element, parameter);
+	}
+
+	private Node<E, P> search(Node<E, P> current, E element, P parameter) {
+		if(current == null || (current.getElement().equals(element) && current.getSearchParameter().equals(parameter))) {
+			return current;
+		}else if(current.getSearchParameter().compareTo(parameter) < 0){
+			return search(current.getRight(), element, parameter);
+		}else {
+			return search(current.getLeft(), element, parameter);
+		}
 	}
 
 	@Override
@@ -54,11 +69,11 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 	}
 
 	private void delete(Node<E, P> node) {
-		
+
 		if (node != null) {
-				
+
 			if(node.getLeft() == null && node.getRight() == null) {
-				
+
 				if(node.equals(root)) {
 					root = null;
 				}else {
@@ -68,20 +83,20 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 						node.getParent().setLeft(null);
 					}
 				}
-				
+
 				node.setParent(null);
-				
+
 			}else if(node.getLeft() != null || node.getRight() != null) {
-				
+
 				Node<E, P> child;
 				if(node.getLeft() == null) {
 					child = node.getRight();
 				}else {
 					child = node.getLeft();
 				}
-				
+
 				child.setParent(node.getParent());
-				
+
 				if(node == root) {
 					root = child;
 				}else if(node.compareTo(node.getParent()) <= 0) {
@@ -89,72 +104,88 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 				}else {
 					node.getParent().setRight(child);
 				}
-				
+
 			}else {
+
 				Node<E, P> successor = node.getSuccessor();
 				node.setElement(successor.getElement());
-				node.setParameter(successor.getParameter());
+				node.setSearchParameter(successor.getSearchParameter());
 				delete(node.getSuccessor());
+
 			}
 		}
-		
+
 	}
 
 	@Override
-	public Node<E, P> search(E element, P parameter) {
-		return search(root, element, parameter);
-	}
-	
-	private Node<E, P> search(Node<E, P> current, E element, P parameter) {
-		
-		if(current == null || (current.getElement().equals(element) && current.getParameter().equals(parameter))) {
-			return current;
-		}else if(current.getParameter().compareTo(parameter) < 0){
-			return search(current.getRight(), element, parameter);
-		}else {
-			return search(current.getLeft(), element, parameter);
-		}
-	}
-
-	@Override
-	public List<E> searchList(P parameter, ComparisonCriteria criterion) {	
+	public List<E> searchList(P parameter, ComparisonCriteria criterion) {
 		return searchList(root, parameter, criterion);
 	}
 
 	private ArrayList<E> searchList(Node<E, P> current, P parameter, ComparisonCriteria criterion) {
 		ArrayList<E> list = new ArrayList<E>();
-		if(current != null) {
-			if(isValid(current, parameter, criterion)) {
-				list.add(current.getElement());
-			}
-			list.addAll(searchList(current.getLeft(), parameter, criterion));
-			list.addAll(searchList(current.getRight(), parameter, criterion));
-		}
-		
-		return list;
-	}
-	
-	public boolean isValid(Node<E, P> node ,P parameter, ComparisonCriteria criterion) {
-		boolean valid = false;
 		switch (criterion) {
 		case MINOR:
-			valid = node.getParameter().compareTo(parameter) < 0;
+			minorSearchList(current, parameter, list);
 			break;
 		case MINOR_EQUAL:
-			valid = node.getParameter().compareTo(parameter) <= 0;
+			minorEqualSearchList(current, parameter, list);
 			break;
 		case EQUAL:
-			valid = node.getParameter().compareTo(parameter) == 0;
+
 			break;
 		case GREATER_EQUAL:
-			valid = node.getParameter().compareTo(parameter) >= 0;
+			greaterEqualSearchList(current, parameter, list);
 			break;
 		case GREATER:
-			valid = node.getParameter().compareTo(parameter) > 0;
+			greaterSearchList(current, parameter, list);
 			break;
 		}
-		
-		return valid;
+		return list;
+	}
+
+	private ArrayList<E> minorSearchList(Node<E, P> current, P parameter, ArrayList<E> list){
+		if(current != null) {
+			if(current.getSearchParameter().compareTo(parameter) <= 0) {
+				list = minorSearchList(current.getRight(), parameter, list);
+				list.add(current.getElement());
+			}
+			list = minorSearchList(current.getLeft(), parameter, list);
+		}
+		return list;
+	}
+
+	private ArrayList<E> minorEqualSearchList(Node<E, P> current, P parameter, ArrayList<E> list){
+		if(current != null) {
+			if(current.getSearchParameter().compareTo(parameter) <= 0) {
+				list = minorEqualSearchList(current.getRight(), parameter, list);
+				list.add(current.getElement());
+			}
+			list = minorEqualSearchList(current.getLeft(), parameter, list);
+		}
+		return list;
+	}
+
+	private ArrayList<E> greaterEqualSearchList(Node<E, P> current, P parameter, ArrayList<E> list){
+		if(current != null) {
+			if(current.getSearchParameter().compareTo(parameter) >= 0) {
+				list = greaterEqualSearchList(current.getLeft(), parameter, list);
+				list.add(current.getElement());
+			}
+			list = greaterEqualSearchList(current.getRight(), parameter, list);
+		}
+		return list;
+	}
+
+	private ArrayList<E> greaterSearchList(Node<E, P> current, P parameter, ArrayList<E> list){
+		if(current != null) {
+			if(current.getSearchParameter().compareTo(parameter) > 0) {
+				list = greaterSearchList(current.getLeft(), parameter, list);
+				list.add(current.getElement());
+			}
+			list = greaterSearchList(current.getRight(), parameter, list);
+		}
+		return list;
 	}
 
 	@Override
@@ -171,12 +202,12 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 	@Override
 	public E getMaximum() {
 		Node<E, P> current = root;
-		E max = null;
+		E maximum = null;
 		while(current != null) {
-			max = current.getElement();
+			maximum = current.getElement();
 			current = current.getRight();
 		}
-		return max;
+		return maximum;
 	}
 
 	@Override
@@ -196,13 +227,13 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 		if(node.getLeft() != null) {
 			order += inorder(node.getLeft()) + " ";
 		}
-		
+
 		order += node.getElement() + " ";
-		
+
 		if(node.getRight() != null) {
 			order+= inorder(node.getRight()) + " ";
 		}
-		
+
 		return order;
 	}
 

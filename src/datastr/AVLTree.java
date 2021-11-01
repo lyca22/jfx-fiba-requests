@@ -8,18 +8,17 @@ public class AVLTree<E extends Comparable<E>, P extends Comparable<P>> extends B
 		Node<E, P> added = search(element, parameter);
 		balance(added);
 	}
-	
+
 	@Override
 	public void delete (E element, P parameter) {
 		//TODO
 	}
-	
+
 	@Override
 	public Node<E, P> leftRotate(Node<E, P> node) {
 		Node<E, P> right = node.getRight();
 		Node<E, P> subOfRight = right.getLeft();
-		
-		
+
 		right.setLeft(node);
 		node.setRight(subOfRight);
 		return right;
@@ -29,7 +28,7 @@ public class AVLTree<E extends Comparable<E>, P extends Comparable<P>> extends B
 	public Node<E, P> rightRotate(Node<E, P> node) {
 		Node<E, P> left = node.getLeft();
 		Node<E, P> subOfLeft = left.getRight();
-		
+
 		left.setRight(node);
 		left.setLeft(subOfLeft);
 		return left;
@@ -42,21 +41,21 @@ public class AVLTree<E extends Comparable<E>, P extends Comparable<P>> extends B
 			if(balance > 1 && node.compareTo(node.getLeft()) <= 0) {
 				rightRotate(node);
 			}
-			
+
 			if(balance < -1 && node.compareTo(node.getRight()) > 0) {
 				leftRotate(node);
 			}
-			
+
 			if(balance > 1 && node.compareTo(node.getLeft()) >= 0) {
 				node.setLeft(leftRotate(node.getLeft()));
 				rightRotate(node);
 			}
-			
+
 			if(balance < -1 && node.compareTo(node.getRight()) < 0) {
 				node.setRight(rightRotate(node.getRight()));
 				leftRotate(node);
 			}
-			
+
 			balance(node.getParent());
 		}
 	}
@@ -77,7 +76,5 @@ public class AVLTree<E extends Comparable<E>, P extends Comparable<P>> extends B
 		}
 		return height;
 	}
-	
-
 
 }

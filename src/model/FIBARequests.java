@@ -12,10 +12,8 @@ public class FIBARequests {
 	private AVLTree<Player, Integer> averageBlocksTree;
 	private AVLTree<Player, Integer> averageStealsTree;
 	private AVLTree<Player, Integer> averageBouncesTree;
-	
-	public FIBARequests() {
-		
-	}
+
+	public FIBARequests() {}
 
 	public AVLTree<Player, Integer> getAverageScoreTree() {
 		return averageScoreTree;
@@ -56,15 +54,15 @@ public class FIBARequests {
 	public void setAverageBouncesTree(AVLTree<Player, Integer> averageBouncesTree) {
 		this.averageBouncesTree = averageBouncesTree;
 	}
-	
+
 	public void addPlayer(Player player) {
 		//TODO Implement Method.
 	}
-	
+
 	public void deletePlayer(Player player) {
 		//TODO Implement Method.
 	}
-	
+
 	public List<Player> search(TreeCriteria treeCriterion, ComparisonCriteria comparisonCriterion) {
 		switch(treeCriterion) {
 		case ASSISTS:
@@ -80,5 +78,5 @@ public class FIBARequests {
 		}
 		return null;
 	}
-	
+
 }
