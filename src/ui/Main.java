@@ -33,6 +33,7 @@ public class Main extends Application{
 		primaryStage.setTitle("FIBA");
 		primaryStage.show();
 		
+		controller.loadFibaPrincipalPane(null);
 	}
 
 }
