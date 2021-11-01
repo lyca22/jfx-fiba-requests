@@ -9,9 +9,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import model.FIBARequests;
 
 public class FIBARequestsController {
 
+	FIBARequests fiba;
+	
 	//mainPane fields
 	@FXML
     private AnchorPane mainPane;
@@ -60,6 +63,10 @@ public class FIBARequestsController {
 
     @FXML
     private JFXComboBox<?> chboxStat;
+    
+    public FIBARequestsController(FIBARequests fiba) {
+		this.fiba = fiba;
+	}
     
 	//fibaPrincipalPane methods
 	@FXML
