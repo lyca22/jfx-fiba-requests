@@ -6,13 +6,13 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <JFXTextField layoutX="126.0" layoutY="42.0" prefHeight="25.0" prefWidth="316.0" promptText="Searh Player" />
+      <JFXTextField fx:id="tfSearchPlayer" layoutX="126.0" layoutY="42.0" prefHeight="25.0" prefWidth="316.0" promptText="Searh Player" />
       <FontAwesomeIconView glyphName="ARROW_LEFT" layoutX="51.0" layoutY="62.0" size="20">
          <cursor>
             <Cursor fx:constant="HAND" />
@@ -28,21 +28,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </FontAwesomeIconView>
-      <JFXToggleButton layoutX="599.0" layoutY="26.0" text="Edit" />
-      <Text layoutX="61.0" layoutY="135.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" />
-      <Text layoutX="61.0" layoutY="176.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Age" />
-      <Text layoutX="60.0" layoutY="231.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Team" />
-      <Text layoutX="60.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Average Score" />
-      <Text layoutX="60.0" layoutY="327.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Average Blocks" />
-      <Text layoutX="60.0" layoutY="376.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Average Steals" />
-      <Text layoutX="61.0" layoutY="418.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Average Bounces" />
-      <JFXTextField layoutX="136.0" layoutY="118.0" />
-      <JFXTextField layoutX="136.0" layoutY="159.0" />
-      <JFXTextField layoutX="136.0" layoutY="214.0" />
-      <JFXTextField layoutX="152.0" layoutY="260.0" />
-      <JFXTextField layoutX="152.0" layoutY="310.0" />
-      <JFXTextField layoutX="152.0" layoutY="359.0" />
-      <JFXTextField layoutX="164.0" layoutY="401.0" />
-      <JFXButton layoutX="397.0" layoutY="486.0" text="Save Changes" />
+      <JFXToggleButton fx:id="btnEdit" layoutX="599.0" layoutY="26.0" onAction="#editFields" text="Edit" />
+      <JFXButton layoutX="397.0" layoutY="486.0" onAction="#editPlayer" text="Save Changes" />
+      <Pane fx:id="playerFieldsPane" layoutX="126.0" layoutY="91.0" prefHeight="380.0" prefWidth="400.0">
+         <children>
+            <Text layoutX="154.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="playerFieldsPane" wrappingWidth="91.00000858306885" />
+         </children>
+      </Pane>
    </children>
 </AnchorPane>
