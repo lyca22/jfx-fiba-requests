@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -25,18 +26,21 @@
       </Text>
       <JFXTextField fx:id="tfStatValue" layoutX="488.0" layoutY="121.0" prefHeight="25.0" prefWidth="75.0" promptText="Value of Stat" />
       <JFXComboBox fx:id="chboxCriterion" layoutX="356.0" layoutY="121.0" promptText="Criterion" />
-      <TableView fx:id="tvPlayers" layoutX="136.0" layoutY="223.0" prefHeight="332.0" prefWidth="527.0">
+      <TableView fx:id="tvPlayers" layoutX="97.0" layoutY="224.0" prefHeight="332.0" prefWidth="601.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="Name" />
-          <TableColumn prefWidth="75.0" text="Age" />
-            <TableColumn prefWidth="75.0" text="Team" />
-            <TableColumn prefWidth="75.0" text="Score" />
-            <TableColumn prefWidth="75.0" text="Blocks" />
-            <TableColumn prefWidth="75.0" text="Steals" />
-            <TableColumn prefWidth="75.0" text="Bounces" />
+          <TableColumn fx:id="colName" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="colAge" prefWidth="75.0" text="Age" />
+            <TableColumn fx:id="colTeam" prefWidth="75.0" text="Team" />
+            <TableColumn fx:id="colScore" prefWidth="75.0" text="Score" />
+            <TableColumn fx:id="colBlocks" prefWidth="75.0" text="Blocks" />
+            <TableColumn fx:id="colSteals" prefWidth="75.0" text="Steals" />
+            <TableColumn fx:id="colBounces" prefWidth="75.0" text="Bounces" />
+            <TableColumn fx:id="colAssists" prefWidth="75.0" text="Assists" />
         </columns>
       </TableView>
       <JFXComboBox fx:id="chboxStat" layoutX="241.0" layoutY="121.0" promptText="Stat" />
       <JFXButton layoutX="374.0" layoutY="176.0" onAction="#seacrhByStat" text="Search" />
+      <Label layoutX="345.0" layoutY="569.0" text="Time (ms)" />
+      <Label fx:id="lblTime" layoutX="412.0" layoutY="569.0" text="000" />
    </children>
 </AnchorPane>
