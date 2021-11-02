@@ -3,7 +3,7 @@ package datastr;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implements IBinaryTree<E, P>{
+public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>{
 
 	private Node<E, P> root;
 
@@ -46,7 +46,7 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 			}
 		}
 	}
-
+	
 	@Override
 	public Node<E, P> search(E element, P parameter) {
 		return search(root, element, parameter);
@@ -63,13 +63,15 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 	}
 
 	@Override
-	public void delete(E element, P parameter) {
+	public Node<E, P> delete(E element, P parameter) {
 		Node<E, P> node = search(element, parameter);
-		delete(node);
+		return delete(node);
 	}
 
-	private void delete(Node<E, P> node) {
+	private Node<E, P> delete(Node<E, P> node) {
 
+		Node<E, P> returnedParent = null;
+		
 		if (node != null) {
 
 			if(node.getLeft() == null && node.getRight() == null) {
@@ -83,7 +85,8 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 						node.getParent().setLeft(null);
 					}
 				}
-
+				
+				returnedParent = node.getParent();
 				node.setParent(null);
 
 			}else if(node.getLeft() != null || node.getRight() != null) {
@@ -105,16 +108,20 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 					node.getParent().setRight(child);
 				}
 
+				returnedParent = child.getParent();
+				
 			}else {
 
 				Node<E, P> successor = node.getSuccessor();
 				node.setElement(successor.getElement());
 				node.setSearchParameter(successor.getSearchParameter());
-				delete(node.getSuccessor());
+				returnedParent = delete(successor);
 
 			}
 		}
 
+		return returnedParent;
+		
 	}
 
 	@Override
@@ -132,7 +139,7 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 			minorEqualSearchList(current, parameter, list);
 			break;
 		case EQUAL:
-
+			equalSearchList(current, parameter, list);
 			break;
 		case GREATER_EQUAL:
 			greaterEqualSearchList(current, parameter, list);
@@ -157,7 +164,7 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 
 	private ArrayList<E> minorEqualSearchList(Node<E, P> current, P parameter, ArrayList<E> list){
 		if(current != null) {
-			if(current.getSearchParameter().compareTo(parameter) <= 0) {
+			if(current.getSearchParameter().compareTo(parameter) < 0) {
 				list = minorEqualSearchList(current.getRight(), parameter, list);
 				list.add(current.getElement());
 			}
@@ -166,6 +173,20 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 		return list;
 	}
 
+	private ArrayList<E> equalSearchList(Node<E, P> current, P parameter, ArrayList<E> list){
+		if(current != null) {
+			if(current.getSearchParameter().compareTo(parameter) == 0) {
+				list = equalSearchList(current.getLeft(), parameter, list);
+				list.add(current.getElement());
+			}else if(current.getSearchParameter().compareTo(parameter) < 0){
+				list = equalSearchList(current.getRight(), parameter, list);
+			}else {
+				list = equalSearchList(current.getLeft(), parameter, list);
+			}
+		}
+		return list;
+	}
+	
 	private ArrayList<E> greaterEqualSearchList(Node<E, P> current, P parameter, ArrayList<E> list){
 		if(current != null) {
 			if(current.getSearchParameter().compareTo(parameter) >= 0) {

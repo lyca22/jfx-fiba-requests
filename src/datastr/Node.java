@@ -1,6 +1,6 @@
 package datastr;
 
-public class Node<E extends Comparable<E>, P extends Comparable<P>> implements INode<E, P>{
+public class Node<E, P extends Comparable<P>> implements Comparable<Node<E, P>>{
 
 	private E element;
 	private P searchParameter;
@@ -85,6 +85,7 @@ public class Node<E extends Comparable<E>, P extends Comparable<P>> implements I
 		return predeccessor;
 	}
 
+	@Override
 	public int compareTo(Node<E, P> newNode) {
 		return searchParameter.compareTo(newNode.getSearchParameter());
 	}
