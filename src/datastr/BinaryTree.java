@@ -50,24 +50,32 @@ public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>
 	}
 	
 	@Override
-	public Node<E, P> search(E element, P parameter) {
-		return search(root, element, parameter);
+	public Node<E, P> search(P parameter) {
+		return search(root, parameter);
 	}
 
-	private Node<E, P> search(Node<E, P> current, E element, P parameter) {
-		if(current == null || (current.getElement().equals(element) && current.getSearchParameter().equals(parameter))) {
+	private Node<E, P> search(Node<E, P> current, P parameter) {
+		if(current == null || current.getSearchParameter().equals(parameter)) {
 			return current;
 		}else if(current.getSearchParameter().compareTo(parameter) < 0){
-			return search(current.getRight(), element, parameter);
+			return search(current.getRight(), parameter);
 		}else {
-			return search(current.getLeft(), element, parameter);
+			return search(current.getLeft(), parameter);
 		}
 	}
 
 	@Override
 	public Node<E, P> delete(E element, P parameter) {
-		Node<E, P> node = search(element, parameter);
-		return delete(node);
+		Node<E, P> node = search(parameter);
+		if(node != null) {
+			if(node.getElement().contains(element)) {
+				node.getElement().remove(element);
+				if(node.getElement().isEmpty()) {
+					return delete(node);
+				}
+			}
+		}
+		return node;
 	}
 
 	private Node<E, P> delete(Node<E, P> node) {
