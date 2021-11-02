@@ -12,6 +12,5 @@ public interface IBinaryTree<E, P extends Comparable<P>> {
 	public ArrayList<E> getMinimum();
 	public ArrayList<E> getMaximum();
 	public boolean isEmpty();
-	public String inorder();
 
 }
