@@ -61,7 +61,7 @@ public class Node<E, P extends Comparable<P>> implements Comparable<Node<E, P>>{
 		this.parent = parent;
 	}
 
-	public Node<E, P> getSuccessor() {
+	public Node<E, P> getPredecessor() {
 
 		Node<E, P> successor = this;
 
@@ -75,7 +75,7 @@ public class Node<E, P extends Comparable<P>> implements Comparable<Node<E, P>>{
 		return successor;
 	}
 
-	public Node<E, P> getPredecessor() {
+	public Node<E, P> getSuccessor() {
 
 		Node<E, P> predeccessor = this;
 
