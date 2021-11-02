@@ -1,5 +1,9 @@
 package model;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -88,6 +92,27 @@ public class FIBARequests {
 				binaryInsertion(player, mid+1, j);
 			}
 		}
+	}
+	
+	public void addWithCSV(String filename) throws FileNotFoundException, IOException {
+		BufferedReader br = new BufferedReader(new FileReader(filename));
+		br.readLine();
+		String line = br.readLine();
+		while(line != null) {
+			String[] playerData = line.split(";");
+			String name = playerData[0];
+			int age = Integer.parseInt(playerData[1]);
+			String team = playerData[2];
+			int averageScore = Integer.parseInt(playerData[3]);
+			int averageAssists = Integer.parseInt(playerData[4]);
+			int averageBlocks = Integer.parseInt(playerData[5]);
+			int averageSteals = Integer.parseInt(playerData[6]);
+			int averageBounces = Integer.parseInt(playerData[7]);
+			Player player = new Player(name, age, team, averageScore, averageAssists, averageBlocks, averageSteals, averageBounces);
+			addPlayer(player);
+			line = br.readLine();
+		}
+		br.close();
 	}
 	
 	public void deletePlayer(Player player) {
