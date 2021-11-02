@@ -51,10 +51,6 @@ public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>
 
 	@Override
 	public Node<E, P> search(P parameter) {
-		System.out.println("Root: " + root.getSearchParameter());
-		System.out.println("Left: " + root.getLeft());
-		System.out.println("Right: " + root.getRight());
-		
 		return search(root, parameter);
 	}
 
