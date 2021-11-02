@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
@@ -301,10 +302,14 @@ public class FIBARequestsController {
     //searchStatPane methods
     @FXML
     public void seacrhByStat(ActionEvent event) {
-
+    	if(!tfStatValue.getText().isEmpty()) {
+    		Double value = Double.valueOf(tfStatValue.getText());
+    		List<Player> players = fiba.searchCriteria(chboxStat.getValue(), value, chboxCriterion.getValue());
+    		initializePlayersTable(players);
+    	}
     }
     
-    public void initializePlayersTable(ArrayList<Player> players) {
+    public void initializePlayersTable(List<Player> players) {
     	ObservableList<Player> playersList = FXCollections.observableArrayList(players);
     	
     	colName.setCellValueFactory(new PropertyValueFactory<Player,String>("Name"));

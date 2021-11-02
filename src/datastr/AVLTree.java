@@ -26,10 +26,17 @@ public class AVLTree<E, P extends Comparable<P>> extends BinaryTree<E, P> implem
 		
 		//setting new relationships 
 		right.setParent(node.getParent());
-		node.getParent().setLeft(right);
+		if(node.getParent() != null){
+			node.getParent().setLeft(right);
+		}else {
+			setRoot(right);
+		}
 		
 		node.setParent(right);
-		subOfRight.setParent(node);
+		if(subOfRight != null){
+			subOfRight.setParent(node);
+		}
+		
 		return right;
 	}
 
@@ -41,12 +48,17 @@ public class AVLTree<E, P extends Comparable<P>> extends BinaryTree<E, P> implem
 		left.setRight(node);
 		node.setLeft(subOfLeft);
 		
-		//seeting new relationships
+		//setting new relationships
 		left.setParent(node.getParent());
+		if(node.getParent() == null) {
+			setRoot(left);
+		}
 		node.setRight(left);
 		
 		node.setParent(left);
-		subOfLeft.setParent(node);
+		if(subOfLeft != null) {
+			subOfLeft.setParent(node);
+		}
 		return left;
 	}
 
