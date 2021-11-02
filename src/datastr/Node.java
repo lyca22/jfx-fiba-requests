@@ -93,5 +93,9 @@ public class Node<E, P extends Comparable<P>> implements Comparable<Node<E, P>>{
 	public int compareTo(Node<E, P> newNode) {
 		return searchParameter.compareTo(newNode.getSearchParameter());
 	}
+	
+	public void addElement(E element) {
+		this.element.add(element);
+	}
 
 }
