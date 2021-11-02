@@ -157,6 +157,7 @@ public class FIBARequestsController {
     	if(inputFile != null) {
     		String path = inputFile.getAbsolutePath();
     		fiba.addWithCSV(path);
+    		System.out.println(fiba.getPlayerList().size());
     	}
     }
 

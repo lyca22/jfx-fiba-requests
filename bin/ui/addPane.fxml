@@ -10,12 +10,15 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="369.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Player">
+      <Text layoutX="354.0" layoutY="82.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add Player">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="18.0" />
          </font>
       </Text>
-      <JFXButton layoutX="381.0" layoutY="499.0" onAction="#addPlayer" text="Add" />
+      <JFXButton layoutX="374.0" layoutY="501.0" onAction="#addPlayer" ripplerFill="#d1ffbd00" style="-fx-background-color: d1ffbd;" text="Add">
+         <font>
+            <Font size="16.0" />
+         </font></JFXButton>
       <Pane fx:id="playerFieldsPane" layoutX="99.0" layoutY="93.0" prefHeight="380.0" prefWidth="400.0">
          <children>
             <Text layoutX="154.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="playerFieldsPane" wrappingWidth="91.00000858306885" />
