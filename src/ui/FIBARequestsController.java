@@ -1,12 +1,11 @@
 package ui;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
-import com.jfoenix.controls.JFXDialog;
-import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
@@ -20,7 +19,6 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import model.FIBARequests;
 import model.Player;
@@ -117,13 +115,13 @@ public class FIBARequestsController {
 	}
 
 	@FXML
-	public void addCsv(ActionEvent event) {
+	public void addCsv(ActionEvent event) throws FileNotFoundException, IOException {
 		FileChooser fileChooser = new FileChooser();
     	fileChooser.setTitle("Search input");
     	File inputFile = fileChooser.showOpenDialog(null);
     	if(inputFile != null) {
     		String path = inputFile.getAbsolutePath();
-    		fiba.addCsv(path);
+    		fiba.addWithCSV(path);
     	}
     }
 
@@ -173,7 +171,13 @@ public class FIBARequestsController {
     //addPlayerPane methods
     @FXML
     public void addPlayer(ActionEvent event) {
-
+    	if(!emptyFields()) {
+			Player newPlayer = new Player(tfName.getText(), Integer.valueOf(tfAge.getText()), tfTeam.getText(), 
+										  Double.valueOf(tfAvgScore.getText()), Double.valueOf(tfAvgAssists.getText()), 
+										  Double.valueOf(tfAvgBlocks.getText()), Double.valueOf(tfAvgSteals.getText()),
+										  Double.valueOf(tfAvgBounces.getText()));
+			fiba.addPlayer(newPlayer);
+		}
     }
 	
     //searchPlayerPane methods
