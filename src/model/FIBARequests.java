@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import datastr.AVLTree;
@@ -77,7 +78,7 @@ public class FIBARequests {
 	}
 
 	public void addPlayer(Player player) {
-		binaryInsertion(player, 0, playerList.size()-1);
+		playerList.add(player);
 		averageScoreTree.add(player, player.getAverageScore());
 		averageAssistsTree.add(player, player.getAverageAssists());
 		averageBlocksTree.add(player, player.getAverageBlocks());
@@ -85,22 +86,10 @@ public class FIBARequests {
 		averageBouncesTree.add(player, player.getAverageBounces());
 	}
 
-	private void binaryInsertion(Player player, int i, int j) {
-		if(i >= j) {
-			playerList.add(player);
-		}else {
-			int mid = (i+j)/2;
-			Player midPlayer = playerList.get(mid);
-			if(midPlayer.getName().compareToIgnoreCase(player.getName()) == 0) {
-				playerList.add(mid, player);
-			}else if(midPlayer.getName().compareToIgnoreCase(player.getName()) > 0) {
-				binaryInsertion(player, i, mid-1);
-			}else {
-				binaryInsertion(player, mid+1, j);
-			}
-		}
+	public void sortPlayerList() {
+		Collections.sort(playerList);
 	}
-	
+
 	public void addWithCSV(String filename) throws FileNotFoundException, IOException {
 		BufferedReader br = new BufferedReader(new FileReader(filename));
 		br.readLine();
@@ -119,9 +108,10 @@ public class FIBARequests {
 			addPlayer(player);
 			line = br.readLine();
 		}
+		sortPlayerList();
 		br.close();
 	}
-	
+
 	public void deletePlayer(Player player) {
 		playerList.remove(player);
 		averageScoreTree.delete(player, player.getAverageScore());
@@ -135,7 +125,7 @@ public class FIBARequests {
 		deletePlayer(deletedPlayer);
 		addPlayer(newPlayer);
 	}
-	
+
 	public Player searchPlayer(String input, int i, int j) {
 		if(j >= i) {
 			int mid = (i+j)/2;
@@ -151,7 +141,7 @@ public class FIBARequests {
 			return null;
 		}
 	}
-	
+
 	public List<Player> searchPlayers(String input){
 		int minimum = searchMinimum(input, 0, playerList.size(), -1);
 		int maximum = searchMaximum(input, 0, playerList.size(), -1);

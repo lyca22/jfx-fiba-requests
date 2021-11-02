@@ -3,7 +3,6 @@ package ui;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.jfoenix.controls.JFXButton;
@@ -231,6 +230,7 @@ public class FIBARequestsController {
 										  Double.valueOf(tfAvgBlocks.getText()), Double.valueOf(tfAvgSteals.getText()),
 										  Double.valueOf(tfAvgBounces.getText()));
 			fiba.addPlayer(newPlayer);
+			fiba.sortPlayerList();
 		}
     }
 	
