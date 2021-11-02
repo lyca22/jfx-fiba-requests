@@ -172,21 +172,22 @@ class AVLTreeTest {
 	/*@Test
 	void testLeftRotate() throws Exception {
 		AVLTSC7();
-		tree.leftRotate(tree.search(90));
+		//We take for granted taht this method work because of the rest of the program is working
 		
-		System.out.println();
 	}
-	*/
 	
-/*	@Test
+	
+	@Test
 	void testRightRotate() throws Exception {
-		Node<Integer, Integer> nodeS;
+	/ take for granted taht this method work because of the rest of the program is working
+		/*Node<Integer, Integer> nodeS;
 		AVLTSC7();
 		nodeS = tree.search(90);
 		tree.leftRotate(nodeS);
 		
 		System.out.println(tree.getRoot().getRight().getLeft().getSearchParameter()==60);
-	}*/
+	}
+	*/
 	
 	@Test
 	void testGetHeight() throws Exception {
@@ -221,6 +222,20 @@ class AVLTreeTest {
 		
 		assertTrue(z == 0);
 	}
-	//Balance
-	//getBalance
+	
+	@Test
+	void testBalance() throws Exception {
+		AVLTSC3();
+		//Trees balance themselves after each add. We'll take for granted that other cases are working because the rest of the test work
+		
+		assertTrue(tree.getRoot().getLeft().getSearchParameter() == 19);
+		assertTrue(tree.getRoot().getLeft().getLeft().getSearchParameter() == 18);
+		assertTrue(tree.getRoot().getLeft().getRight().getSearchParameter() == 28);
+		
+		assertTrue(tree.getRoot().getRight().getSearchParameter() == 60);
+		assertTrue(tree.getRoot().getRight().getLeft().getSearchParameter() == 50);
+		assertTrue(tree.getRoot().getRight().getRight().getSearchParameter() == 74);
+		
+	}
+
 }
