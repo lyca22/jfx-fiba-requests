@@ -1,5 +1,6 @@
 package model;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -212,7 +213,65 @@ class BinaryTreeTest {
 		assertEquals(obtained, expected);
 	}
 	
-	//@Test
-	//void test
-
+	@Test
+	void testGetMinimun() throws Exception {
+		ArrayList<Integer> mins;
+		
+		BTTSC1();
+		mins = tree.getMinimum();
+		
+		assertTrue(mins==null);
+		
+		BTTSC2();
+		mins = tree.getMinimum();
+		
+		assertTrue(mins.get(0) == 7);
+		
+		BTTSC4();
+		mins = tree.getMinimum();
+		
+		assertTrue(mins.get(0) == 5);	 
+		
+		BTTSC5();
+		mins = tree.getMinimum();
+		
+		assertTrue(mins.get(0) == 3);
+	}
+	
+	@Test
+	void testGetMaximun() throws Exception {
+		
+		ArrayList<Integer> maxs;
+		BTTSC1();
+		maxs = tree.getMaximum();
+		
+		assertTrue(maxs == null);
+		
+		BTTSC2();
+		maxs = tree.getMaximum();
+		
+		assertTrue(maxs.get(0) == 7);
+		
+		BTTSC4();
+		maxs = tree.getMaximum();
+		
+		assertTrue(maxs.get(0) == 7);	 
+		
+		BTTSC5();
+		maxs = tree.getMaximum();
+		
+		assertTrue(maxs.get(0) == 15);
+	}
+	
+	@Test
+	void testIsEmpty() throws Exception {
+		BTTSC1();
+		assertTrue(tree.isEmpty());
+		
+		BTTSC2();
+		assertFalse(tree.isEmpty());
+		
+		BTTSC5();
+		assertFalse(tree.isEmpty());
+	}
 }
