@@ -30,20 +30,22 @@ public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>
 	}
 
 	private void add(Node<E, P> current, Node<E, P> newNode) {
-		if(newNode.compareTo(current) <= 0) {
+		if(newNode.compareTo(current) < 0) {
 			if(current.getLeft() == null) {
 				current.setLeft(newNode);
 				newNode.setParent(current);
 			}else {
 				add(current.getLeft(), newNode);
 			}
-		}else {
+		}else if(newNode.compareTo(current) > 0){
 			if(current.getRight() == null) {
 				current.setRight(newNode);
 				newNode.setParent(current);
 			}else {
 				add(current.getRight(), newNode);
 			}
+		}else {
+			current.addElements(newNode.getElement());
 		}
 	}
 	

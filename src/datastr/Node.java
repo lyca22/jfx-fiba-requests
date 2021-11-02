@@ -97,5 +97,9 @@ public class Node<E, P extends Comparable<P>> implements Comparable<Node<E, P>>{
 	public void addElement(E element) {
 		this.element.add(element);
 	}
+	
+	public void addElements(ArrayList<E> element) {
+		this.element.addAll(element);
+	}
 
 }
