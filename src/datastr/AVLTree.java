@@ -3,7 +3,7 @@ package datastr;
 public class AVLTree<E, P extends Comparable<P>> extends BinaryTree<E, P> implements IAVLTree<E, P>{
 
 	@Override
-	public void add(E element, P parameter) {
+	public void add(E element, P parameter) {	 
 		super.add(element, parameter);
 		Node<E, P> added = search(parameter);
 		balance(added);

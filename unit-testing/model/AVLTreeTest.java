@@ -6,6 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import datastr.AVLTree;
+import datastr.Node;
 
 class AVLTreeTest {
 
@@ -84,10 +85,12 @@ class AVLTreeTest {
 		tree.add(90, 90);
 		
 		tree.add(16, 16);
+		tree.add(65, 65);
+		
+		tree.add(10, 10);
 		tree.add(60, 60);
 		tree.add(55, 55);
 		tree.add(65, 65);
-		tree.add(64, 64);
 	}
 
 	@BeforeEach
@@ -141,12 +144,12 @@ class AVLTreeTest {
 	
 	@Test
 	void testDelete() throws Exception {
-		AVLTSC2();
+		AVLTSC1();
 	
 		tree.delete(7, 7);
 		assertTrue(tree.getRoot()==null);
 		
-		/*AVLTSC2();
+		AVLTSC2();
 		
 		tree.add(7, 7);
 		assertTrue(tree.getRoot().getSearchParameter() == 9);
@@ -163,6 +166,61 @@ class AVLTreeTest {
 		tree.add(30, 30);
 		
 		assertTrue(tree.getRoot().getSearchParameter()==15);
-		*/
+		
 	}
+	
+	/*@Test
+	void testLeftRotate() throws Exception {
+		AVLTSC7();
+		tree.leftRotate(tree.search(90));
+		
+		System.out.println();
+	}
+	*/
+	
+/*	@Test
+	void testRightRotate() throws Exception {
+		Node<Integer, Integer> nodeS;
+		AVLTSC7();
+		nodeS = tree.search(90);
+		tree.leftRotate(nodeS);
+		
+		System.out.println(tree.getRoot().getRight().getLeft().getSearchParameter()==60);
+	}*/
+	
+	@Test
+	void testGetHeight() throws Exception {
+		AVLTSC6();
+		
+		int x = tree.getHeight(tree.search(45));
+		
+		assertTrue(x == 3);
+		
+		int y = tree.getHeight(tree.search(74));
+		
+		assertTrue(y == 2);
+		
+		int z = tree.getHeight(tree.search(65));
+		
+		assertTrue(z == 0);
+	}
+	
+	@Test
+	void testGetBalance() throws Exception {
+		AVLTSC6();
+		
+		int x = tree.getBalance(tree.search(45));
+		
+		assertTrue(x == 1);
+		
+		int y = tree.getBalance(tree.search(74));
+		
+		assertTrue(y == -1);
+		
+		int z = tree.getBalance(tree.search(65));
+		
+		assertTrue(z == 0);
+	}
+	//Balance
+	//getBalance
 }
