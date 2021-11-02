@@ -66,7 +66,7 @@ public class FIBARequests {
 	}
 
 	public void addPlayer(Player player) {
-		//TODO Implement Method for playerList.
+		binaryInsertion(player, 0, playerList.size()-1);
 		averageScoreTree.add(player, player.getAverageScore());
 		averageAssistsTree.add(player, player.getAverageAssists());
 		averageBlocksTree.add(player, player.getAverageBlocks());
@@ -74,8 +74,24 @@ public class FIBARequests {
 		averageBouncesTree.add(player, player.getAverageBounces());
 	}
 
+	public void binaryInsertion(Player player, int i, int j) {
+		if(i >= j) {
+			playerList.add(player);
+		}else {
+			int mid = (i+j)/2;
+			Player midPlayer = playerList.get(mid);
+			if(midPlayer.getName().compareToIgnoreCase(player.getName()) == 0) {
+				playerList.add(mid, player);
+			}else if(midPlayer.getName().compareToIgnoreCase(player.getName()) > 0) {
+				binaryInsertion(player, i, mid-1);
+			}else {
+				binaryInsertion(player, mid+1, j);
+			}
+		}
+	}
+	
 	public void deletePlayer(Player player) {
-		//TODO Implement Method for playerList.
+		playerList.remove(player);
 		averageScoreTree.delete(player, player.getAverageScore());
 		averageAssistsTree.delete(player, player.getAverageAssists());
 		averageBlocksTree.delete(player, player.getAverageBlocks());
