@@ -110,11 +110,11 @@ public class FIBARequests {
 			String name = playerData[0];
 			int age = Integer.parseInt(playerData[1]);
 			String team = playerData[2];
-			int averageScore = Integer.parseInt(playerData[3]);
-			int averageAssists = Integer.parseInt(playerData[4]);
-			int averageBlocks = Integer.parseInt(playerData[5]);
-			int averageSteals = Integer.parseInt(playerData[6]);
-			int averageBounces = Integer.parseInt(playerData[7]);
+			Double averageScore = Double.valueOf(playerData[3]);
+			Double averageAssists = Double.valueOf(playerData[4]);
+			Double averageBlocks = Double.valueOf(playerData[5]);
+			Double averageSteals = Double.valueOf(playerData[6]);
+			Double averageBounces = Double.valueOf(playerData[7]);
 			Player player = new Player(name, age, team, averageScore, averageAssists, averageBlocks, averageSteals, averageBounces);
 			addPlayer(player);
 			line = br.readLine();
