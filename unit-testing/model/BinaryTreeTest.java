@@ -3,10 +3,13 @@ package model;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import datastr.BinaryTree;
+import datastr.ComparisonCriteria;
 import datastr.Node;
 
 class BinaryTreeTest {
@@ -154,8 +157,59 @@ class BinaryTreeTest {
 	}
 	
 	@Test
-	void testsearchList() {
+	void testsearchList() throws Exception {
+		ArrayList<Integer> obtained;
+		ArrayList<Integer> expected;
 		
+		BTTSC3();
+		obtained = (ArrayList<Integer>) tree.searchList(10, ComparisonCriteria.MINOR);
+		
+		expected = new ArrayList<>();
+		expected.add(9);expected.add(7);
+		
+		
+		assertEquals(obtained, expected);
+		
+		BTTSC4();
+		obtained = (ArrayList<Integer>) tree.searchList(10, ComparisonCriteria.MINOR);
+		
+		expected = new ArrayList<>();
+		expected.add(7);expected.add(5);
+		
+		
+		assertEquals(obtained, expected);
+		
+		BTTSC5();
+		obtained = (ArrayList<Integer>) tree.searchList(12, ComparisonCriteria.MINOR_EQUAL);
+		
+		expected = new ArrayList<>();
+		expected.add(11);expected.add(9);expected.add(7);expected.add(5);expected.add(3);
+		
+		
+		assertEquals(obtained, expected);
+		
+		/*BTTSC5();
+		obtained = (ArrayList<Integer>) tree.searchList(10, ComparisonCriteria.EQUAL);
+		
+		expected = new ArrayList<>();		
+		
+		assertEquals(obtained, expected);*/	
+		
+		BTTSC5();
+		obtained = (ArrayList<Integer>) tree.searchList(7, ComparisonCriteria.GREATER);
+		
+		expected = new ArrayList<>();		
+		expected.add(9);expected.add(11);expected.add(13);expected.add(15);
+		
+		assertEquals(obtained, expected);
+		
+		BTTSC5();
+		obtained = (ArrayList<Integer>) tree.searchList(7, ComparisonCriteria.GREATER_EQUAL);
+		
+		expected = new ArrayList<>();		
+		expected.add(7);expected.add(9);expected.add(11);expected.add(13);expected.add(15);
+		
+		assertEquals(obtained, expected);
 	}
 	
 	//@Test
