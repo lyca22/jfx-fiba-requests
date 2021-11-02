@@ -27,7 +27,7 @@ public class FIBARequests {
 		setAverageStealsTree(new AVLTree<Player, Double>());
 		setAverageBouncesTree(new AVLTree<Player, Double>());
 	}
-
+	
 	public ArrayList<Player> getPlayerList() {
 		return playerList;
 	}
