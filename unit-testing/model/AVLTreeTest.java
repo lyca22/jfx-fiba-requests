@@ -6,7 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import datastr.AVLTree;
-import datastr.Node;
 
 class AVLTreeTest {
 
