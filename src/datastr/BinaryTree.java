@@ -153,7 +153,7 @@ public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>
 
 	private ArrayList<E> minorSearchList(Node<E, P> current, P parameter, ArrayList<E> list){
 		if(current != null) {
-			if(current.getSearchParameter().compareTo(parameter) <= 0) {
+			if(current.getSearchParameter().compareTo(parameter) < 0) {
 				list = minorSearchList(current.getRight(), parameter, list);
 				list.add(current.getElement());
 			}
@@ -164,7 +164,7 @@ public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>
 
 	private ArrayList<E> minorEqualSearchList(Node<E, P> current, P parameter, ArrayList<E> list){
 		if(current != null) {
-			if(current.getSearchParameter().compareTo(parameter) < 0) {
+			if(current.getSearchParameter().compareTo(parameter) <= 0) {
 				list = minorEqualSearchList(current.getRight(), parameter, list);
 				list.add(current.getElement());
 			}

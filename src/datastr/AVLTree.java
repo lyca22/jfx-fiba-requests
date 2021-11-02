@@ -23,16 +23,30 @@ public class AVLTree<E, P extends Comparable<P>> extends BinaryTree<E, P> implem
 
 		right.setLeft(node);
 		node.setRight(subOfRight);
+		
+		//setting new relationships 
+		right.setParent(node.getParent());
+		node.getParent().setLeft(right);
+		
+		node.setParent(right);
+		subOfRight.setParent(node);
 		return right;
 	}
 
 	@Override
 	public Node<E, P> rightRotate(Node<E, P> node) {
-		Node<E, P> left = node.getLeft();
+		Node<E, P> left  = node.getLeft();
 		Node<E, P> subOfLeft = left.getRight();
-
+ 
 		left.setRight(node);
-		left.setLeft(subOfLeft);
+		node.setLeft(subOfLeft);
+		
+		//seeting new relationships
+		left.setParent(node.getParent());
+		node.setRight(left);
+		
+		node.setParent(left);
+		subOfLeft.setParent(node);
 		return left;
 	}
 
