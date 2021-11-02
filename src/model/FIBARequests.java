@@ -83,6 +83,27 @@ public class FIBARequests {
 		averageBouncesTree.delete(player, player.getAverageBounces());
 	}
 
+	public void modifyPlayer(Player deletedPlayer, Player newPlayer) {
+		deletePlayer(deletedPlayer);
+		addPlayer(newPlayer);
+	}
+	
+	public Player searchPlayer(String input, int i, int j) {
+		if(j >= i) {
+			int mid = (i+j)/2;
+			Player player = playerList.get(mid);
+			if(player.getName().compareTo(input) == 0) {
+				return player;
+			}else if(player.getName().compareTo(input) > 0) {
+				return searchPlayer(input, i, mid-1);
+			}else {
+				return searchPlayer(input, mid+1, j);
+			}
+		}else {
+			return null;
+		}
+	}
+	
 	public List<Player> searchPlayers(String input){
 		int minimum = searchMinimum(input, 0, playerList.size(), -1);
 		int maximum = searchMaximum(input, 0, playerList.size(), -1);
