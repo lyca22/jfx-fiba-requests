@@ -1,6 +1,6 @@
 package datastr;
 
-public class AVLTree<E extends Comparable<E>, P extends Comparable<P>> extends BinaryTree<E, P> implements IAVLTree<E, P>, IAVLNode<E, P>{
+public class AVLTree<E, P extends Comparable<P>> extends BinaryTree<E, P> implements IAVLTree<E, P>{
 
 	@Override
 	public void add(E element, P parameter) {
@@ -10,8 +10,10 @@ public class AVLTree<E extends Comparable<E>, P extends Comparable<P>> extends B
 	}
 
 	@Override
-	public void delete (E element, P parameter) {
-		//TODO
+	public Node<E, P> delete (E element, P parameter) {
+		Node<E, P> parent = super.delete(element, parameter);
+		balance(parent);
+		return parent;
 	}
 
 	@Override
@@ -37,26 +39,29 @@ public class AVLTree<E extends Comparable<E>, P extends Comparable<P>> extends B
 	@Override
 	public void balance(Node<E, P> node) {
 		if(node != null) {
-			int balance = getBalance(node);
-			if(balance > 1 && node.compareTo(node.getLeft()) <= 0) {
-				rightRotate(node);
-			}
 
-			if(balance < -1 && node.compareTo(node.getRight()) > 0) {
+			int nodeBalance = getBalance(node);
+
+			if(nodeBalance >= 2) {
+
+				int previousNodeBalance = getBalance(node.getRight());
+
+				if(previousNodeBalance < 0) {
+					rightRotate(node.getRight());
+				}
 				leftRotate(node);
-			}
+			}else if(nodeBalance <= -2){
 
-			if(balance > 1 && node.compareTo(node.getLeft()) >= 0) {
-				node.setLeft(leftRotate(node.getLeft()));
+				int previousNodeBalance = getBalance(node.getLeft());
+
+				if(previousNodeBalance >= 0) {
+					leftRotate(node.getLeft());
+				}
 				rightRotate(node);
-			}
-
-			if(balance < -1 && node.compareTo(node.getRight()) < 0) {
-				node.setRight(rightRotate(node.getRight()));
-				leftRotate(node);
 			}
 
 			balance(node.getParent());
+
 		}
 	}
 
