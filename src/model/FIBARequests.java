@@ -19,7 +19,14 @@ public class FIBARequests {
 	private AVLTree<Player, Double> averageStealsTree;
 	private AVLTree<Player, Double> averageBouncesTree;
 
-	public FIBARequests() {}
+	public FIBARequests() {
+		setPlayerList(new ArrayList<Player>());
+		setAverageScoreTree(new AVLTree<Player, Double>());
+		setAverageAssistsTree(new AVLTree<Player, Double>());
+		setAverageBlocksTree(new AVLTree<Player, Double>());
+		setAverageStealsTree(new AVLTree<Player, Double>());
+		setAverageBouncesTree(new AVLTree<Player, Double>());
+	}
 
 	public ArrayList<Player> getPlayerList() {
 		return playerList;
@@ -78,7 +85,7 @@ public class FIBARequests {
 		averageBouncesTree.add(player, player.getAverageBounces());
 	}
 
-	public void binaryInsertion(Player player, int i, int j) {
+	private void binaryInsertion(Player player, int i, int j) {
 		if(i >= j) {
 			playerList.add(player);
 		}else {
@@ -159,7 +166,7 @@ public class FIBARequests {
 		return filteredList;
 	}
 
-	public int searchMinimum(String input, int i, int j, int minimum) {
+	private int searchMinimum(String input, int i, int j, int minimum) {
 		if(i > j) {
 			return minimum;
 		}else {
@@ -177,7 +184,7 @@ public class FIBARequests {
 		}
 	}
 
-	public int searchMaximum(String input, int i, int j, int maximum) {
+	private int searchMaximum(String input, int i, int j, int maximum) {
 		if(i > j) {
 			return maximum;
 		}else {
