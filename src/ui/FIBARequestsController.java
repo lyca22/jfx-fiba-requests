@@ -1,9 +1,12 @@
 package ui;
 
+import java.io.File;
 import java.io.IOException;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDialog;
+import com.jfoenix.controls.JFXDialogLayout;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
@@ -11,10 +14,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
+import javafx.stage.FileChooser;
 import model.FIBARequests;
 
 public class FIBARequestsController {
@@ -24,6 +31,10 @@ public class FIBARequestsController {
 	//mainPane fields
 	@FXML
     private AnchorPane mainPane;
+	
+	//fibaPrincipalPane fields
+	@FXML
+	private Label lblAddCsv;
 	
 	//playerFieldsPane fields
     @FXML
@@ -86,11 +97,28 @@ public class FIBARequestsController {
 		
 		mainPane.getChildren().clear();
 		mainPane.getChildren().setAll(fibaPrincial);
+		
+		addTipToShapes();
     }
     
-	@FXML
-    void loadAddCsv(ActionEvent event) {
+	private void addTipToShapes() {
+		Tooltip lblTip = new Tooltip();
+		lblTip.setText("The csv must have format:\n" + 
+						  "name;age;team;avgScore;avgAssists;avgBlocks;avgSteals;avgBounces");
+		lblAddCsv.setTooltip(lblTip);
+		
+	}
 
+	@FXML
+    void addCsv(ActionEvent event) {
+		FileChooser fileChooser = new FileChooser();
+    	fileChooser.setTitle("Search input");
+    	File inputFile = fileChooser.showOpenDialog(null);
+    	if(inputFile != null) {
+    		String path = inputFile.getAbsolutePath();
+    		//TODO: Add method addCsv to FibaRequests
+    		//fiba.addCsv(path);
+    	}
     }
 
     @FXML
