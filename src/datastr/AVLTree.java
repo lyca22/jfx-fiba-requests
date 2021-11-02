@@ -5,7 +5,7 @@ public class AVLTree<E, P extends Comparable<P>> extends BinaryTree<E, P> implem
 	@Override
 	public void add(E element, P parameter) {
 		super.add(element, parameter);
-		Node<E, P> added = search(element, parameter);
+		Node<E, P> added = search(parameter);
 		balance(added);
 	}
 
