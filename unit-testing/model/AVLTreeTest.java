@@ -105,12 +105,64 @@ class AVLTreeTest {
 		tree.add(64, 64);
 	}
 	
+	@BeforeEach
+	void AVLTSC9() throws Exception {
+		tree = new AVLTree<>();
+		tree.add(9, 9);
+		tree.add(15, 15);
+	}
+	
 	@Test
 	void testAdd() throws Exception {
 		AVLTSC1();
-		System.out.println(tree.getRoot()==null);
+	
 		tree.add(7, 7);
-		assertTrue(true);
+		assertTrue(tree.getRoot().getSearchParameter() == 7);
 		
+		AVLTSC2();
+		
+		tree.add(7, 7);
+		assertTrue(tree.getRoot().getSearchParameter() == 9);
+		assertTrue(tree.getRoot().getLeft().getRight().getSearchParameter() == 7);
+		
+		AVLTSC4();
+		
+		tree.add(55, 55);
+		
+		assertTrue(tree.getRoot().getRight().getLeft().getRight().getSearchParameter() == 55);
+		
+		AVLTSC9();
+		
+		tree.add(30, 30);
+		
+		assertTrue(tree.getRoot().getSearchParameter()==15);
+		
+	}
+	
+	@Test
+	void testDelete() throws Exception {
+		AVLTSC2();
+	
+		tree.delete(7, 7);
+		assertTrue(tree.getRoot()==null);
+		
+		/*AVLTSC2();
+		
+		tree.add(7, 7);
+		assertTrue(tree.getRoot().getSearchParameter() == 9);
+		assertTrue(tree.getRoot().getLeft().getRight().getSearchParameter() == 7);
+		
+		AVLTSC4();
+		
+		tree.add(55, 55);
+		
+		assertTrue(tree.getRoot().getRight().getLeft().getRight().getSearchParameter() == 55);
+		
+		AVLTSC9();
+		
+		tree.add(30, 30);
+		
+		assertTrue(tree.getRoot().getSearchParameter()==15);
+		*/
 	}
 }
