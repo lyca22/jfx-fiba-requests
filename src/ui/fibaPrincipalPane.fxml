@@ -10,15 +10,27 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Text layoutX="354.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FIBA REQUESTS">
+      <Text layoutX="297.0" layoutY="220.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FIBA REQUESTS">
          <font>
-            <Font name="System Bold" size="12.0" />
+            <Font name="System Bold" size="28.0" />
          </font>
       </Text>
-      <JFXButton layoutX="176.0" layoutY="327.0" onAction="#addCsv" text="Add csv" />
-      <JFXButton layoutX="424.0" layoutY="327.0" onAction="#loadSearchPlayer" text="Search Player" />
-      <JFXButton layoutX="273.0" layoutY="327.0" onAction="#loadAddPlayer" text="Add Player" />
-      <JFXButton layoutX="551.0" layoutY="327.0" onAction="#loadSearchByStat" text="Search By Stat" />
+      <JFXButton layoutX="166.0" layoutY="309.0" onAction="#addCsv" ripplerFill="#ffc694" style="-fx-background-color: ffc694;" text="Add csv">
+         <font>
+            <Font size="16.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="418.0" layoutY="309.0" onAction="#loadSearchPlayer" ripplerFill="#ccc3ff" style="-fx-background-color: ccc3ff;" text="Search Player">
+         <font>
+            <Font size="16.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="272.0" layoutY="309.0" onAction="#loadAddPlayer" ripplerFill="#d1ffbd" style="-fx-background-color: d1ffbd;" text="Add Player">
+         <font>
+            <Font size="16.0" />
+         </font></JFXButton>
+      <JFXButton layoutX="564.0" layoutY="309.0" onAction="#loadSearchByStat" ripplerFill="#ff7979" style="-fx-background-color: ff7979;" text="Search By Stat">
+         <font>
+            <Font size="16.0" />
+         </font></JFXButton>
       <Circle fill="#1f93ff00" layoutX="205.0" layoutY="370.0" radius="12.0" stroke="#aeaeae" strokeType="INSIDE" strokeWidth="2.0" />
       <Label fx:id="lblAddCsv" layoutX="200.0" layoutY="362.0">
          <graphic>
