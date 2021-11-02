@@ -9,11 +9,11 @@ import datastr.ComparisonCriteria;
 public class FIBARequests {
 
 	private ArrayList<Player> playerList;
-	private AVLTree<Player, Integer> averageScoreTree;
-	private AVLTree<Player, Integer> averageAssistsTree;
-	private AVLTree<Player, Integer> averageBlocksTree;
-	private AVLTree<Player, Integer> averageStealsTree;
-	private AVLTree<Player, Integer> averageBouncesTree;
+	private AVLTree<Player, Double> averageScoreTree;
+	private AVLTree<Player, Double> averageAssistsTree;
+	private AVLTree<Player, Double> averageBlocksTree;
+	private AVLTree<Player, Double> averageStealsTree;
+	private AVLTree<Player, Double> averageBouncesTree;
 
 	public FIBARequests() {}
 
@@ -25,52 +25,62 @@ public class FIBARequests {
 		this.playerList = playerList;
 	}
 
-	public AVLTree<Player, Integer> getAverageScoreTree() {
+	public AVLTree<Player, Double> getAverageScoreTree() {
 		return averageScoreTree;
 	}
 
-	public void setAverageScoreTree(AVLTree<Player, Integer> averageScoreTree) {
+	public void setAverageScoreTree(AVLTree<Player, Double> averageScoreTree) {
 		this.averageScoreTree = averageScoreTree;
 	}
 
-	public AVLTree<Player, Integer> getAverageAssistsTree() {
+	public AVLTree<Player, Double> getAverageAssistsTree() {
 		return averageAssistsTree;
 	}
 
-	public void setAverageAssistsTree(AVLTree<Player, Integer> averageAssistsTree) {
+	public void setAverageAssistsTree(AVLTree<Player, Double> averageAssistsTree) {
 		this.averageAssistsTree = averageAssistsTree;
 	}
 
-	public AVLTree<Player, Integer> getAverageBlocksTree() {
+	public AVLTree<Player, Double> getAverageBlocksTree() {
 		return averageBlocksTree;
 	}
 
-	public void setAverageBlocksTree(AVLTree<Player, Integer> averageBlocksTree) {
+	public void setAverageBlocksTree(AVLTree<Player, Double> averageBlocksTree) {
 		this.averageBlocksTree = averageBlocksTree;
 	}
 
-	public AVLTree<Player, Integer> getAverageStealsTree() {
+	public AVLTree<Player, Double> getAverageStealsTree() {
 		return averageStealsTree;
 	}
 
-	public void setAverageStealsTree(AVLTree<Player, Integer> averageStealsTree) {
+	public void setAverageStealsTree(AVLTree<Player, Double> averageStealsTree) {
 		this.averageStealsTree = averageStealsTree;
 	}
 
-	public AVLTree<Player, Integer> getAverageBouncesTree() {
+	public AVLTree<Player, Double> getAverageBouncesTree() {
 		return averageBouncesTree;
 	}
 
-	public void setAverageBouncesTree(AVLTree<Player, Integer> averageBouncesTree) {
+	public void setAverageBouncesTree(AVLTree<Player, Double> averageBouncesTree) {
 		this.averageBouncesTree = averageBouncesTree;
 	}
 
 	public void addPlayer(Player player) {
-		//TODO Implement Method.
+		//TODO Implement Method for playerList.
+		averageScoreTree.add(player, player.getAverageScore());
+		averageAssistsTree.add(player, player.getAverageAssists());
+		averageBlocksTree.add(player, player.getAverageBlocks());
+		averageStealsTree.add(player, player.getAverageSteals());
+		averageBouncesTree.add(player, player.getAverageBounces());
 	}
 
 	public void deletePlayer(Player player) {
-		//TODO Implement Method.
+		//TODO Implement Method for playerList.
+		averageScoreTree.delete(player, player.getAverageScore());
+		averageAssistsTree.delete(player, player.getAverageAssists());
+		averageBlocksTree.delete(player, player.getAverageBlocks());
+		averageStealsTree.delete(player, player.getAverageSteals());
+		averageBouncesTree.delete(player, player.getAverageBounces());
 	}
 
 	public List<Player> searchPlayers(String input){
@@ -86,7 +96,7 @@ public class FIBARequests {
 		ArrayList<Player> filteredList = new ArrayList<Player>(list.subList(minimum, maximum+1));
 		return filteredList;
 	}
-	
+
 	public int searchMinimum(String input, int i, int j, int minimum) {
 		if(i > j) {
 			return minimum;
@@ -123,18 +133,18 @@ public class FIBARequests {
 		}
 	}
 
-	public List<Player> searchCriteria(TreeCriteria treeCriterion, ComparisonCriteria comparisonCriterion) {
+	public List<Player> searchCriteria(TreeCriteria treeCriterion, Double parameter, ComparisonCriteria comparisonCriterion) {
 		switch(treeCriterion) {
-		case ASSISTS:
-			break;
-		case BLOCKS:
-			break;
-		case BOUNCES:
-			break;
 		case SCORE:
-			break;
+			return averageScoreTree.searchList(parameter, comparisonCriterion);
+		case ASSISTS:
+			return averageAssistsTree.searchList(parameter, comparisonCriterion);
+		case BLOCKS:
+			return averageBlocksTree.searchList(parameter, comparisonCriterion);
 		case STEALS:
-			break;
+			return averageStealsTree.searchList(parameter, comparisonCriterion);
+		case BOUNCES:
+			return averageBouncesTree.searchList(parameter, comparisonCriterion);
 		}
 		return null;
 	}
