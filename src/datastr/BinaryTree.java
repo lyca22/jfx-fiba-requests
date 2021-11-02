@@ -103,6 +103,13 @@ public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>
 				returnedParent = node.getParent();
 				node.setParent(null);
 
+			}else if(node.getLeft() != null && node.getRight() != null){
+
+				Node<E, P> successor = node.getSuccessor();
+				node.setElement(successor.getElement());
+				node.setSearchParameter(successor.getSearchParameter()); 
+				returnedParent = delete(successor);
+
 			}else if(node.getLeft() != null || node.getRight() != null) {
 
 				Node<E, P> child;
@@ -123,13 +130,6 @@ public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>
 				}
 
 				returnedParent = child.getParent();
-
-			}else {
-
-				Node<E, P> successor = node.getSuccessor();
-				node.setElement(successor.getElement());
-				node.setSearchParameter(successor.getSearchParameter());
-				returnedParent = delete(successor);
 
 			}
 		}

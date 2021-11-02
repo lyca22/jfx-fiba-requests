@@ -3,10 +3,14 @@ package model;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import datastr.BinaryTree;
+import datastr.ComparisonCriteria;
+import datastr.Node;
 
 class BinaryTreeTest {
 
@@ -98,6 +102,31 @@ class BinaryTreeTest {
 		assertTrue(tree.getRoot().getRight().getRight().getElement().size()==2);
 	}
 
+	@Test
+	void testSearch() throws Exception {
+		Node<Integer, Integer> foundNode;
+		
+		BTTSC1();
+		foundNode = tree.search(7);
+		
+		assertTrue(foundNode == null);
+		
+		BTTSC2();
+		foundNode = tree.search(7);
+		
+		assertTrue(foundNode != null);
+		assertTrue(foundNode.getSearchParameter() == 7);
+		
+		BTTSC2();
+		foundNode = tree.search(5);
+		
+		assertTrue(foundNode == null);
+		
+		BTTSC5();
+		foundNode = tree.search(10);
+		
+		assertTrue(foundNode == null);
+	}
 	
 	@Test
 	void testDelete() throws Exception {
@@ -122,30 +151,65 @@ class BinaryTreeTest {
 		assertEquals(tree.getRoot().getLeft().getSearchParameter(), 3);
 
 		BTTSC5();
-		System.out.println("***"+tree.getRoot().getPredecessor().getSearchParameter());
+		tree.delete(9, 9); 
+		 
+		assertTrue(tree.getRoot().getSearchParameter() == 11);
+	}
+	
+	@Test
+	void testsearchList() throws Exception {
+		ArrayList<Integer> obtained;
+		ArrayList<Integer> expected;
+		
+		BTTSC3();
+		obtained = (ArrayList<Integer>) tree.searchList(10, ComparisonCriteria.MINOR);
+		
+		expected = new ArrayList<>();
+		expected.add(9);expected.add(7);
 		
 		
-		System.out.println(tree.getRoot().getSearchParameter());
-		System.out.println(tree.getRoot().getLeft().getSearchParameter());
-		System.out.println(tree.getRoot().getRight().getSearchParameter());
+		assertEquals(obtained, expected);
 		
-		System.out.println(tree.getRoot().getLeft().getLeft().getSearchParameter());
-		System.out.println(tree.getRoot().getLeft().getRight().getSearchParameter());
+		BTTSC4();
+		obtained = (ArrayList<Integer>) tree.searchList(10, ComparisonCriteria.MINOR);
 		
-		System.out.println(tree.getRoot().getRight().getLeft().getSearchParameter());
-		System.out.println(tree.getRoot().getRight().getRight().getSearchParameter());
-		tree.delete(9, 9);
-		System.out.println("***");
-		System.out.println(tree.getRoot().getSearchParameter());
-		System.out.println(tree.getRoot().getLeft().getSearchParameter());
-		System.out.println(tree.getRoot().getRight().getSearchParameter());
+		expected = new ArrayList<>();
+		expected.add(7);expected.add(5);
 		
-		System.out.println(tree.getRoot().getLeft().getLeft().getSearchParameter());
-		System.out.println(tree.getRoot().getLeft().getRight().getSearchParameter());
 		
-		System.out.println(tree.getRoot().getRight().getLeft().getSearchParameter());
-		System.out.println(tree.getRoot().getRight().getRight().getSearchParameter());
-		//assertEquals(tree.getRoot().getSearchParameter(), 9);
+		assertEquals(obtained, expected);
+		
+		BTTSC5();
+		obtained = (ArrayList<Integer>) tree.searchList(12, ComparisonCriteria.MINOR_EQUAL);
+		
+		expected = new ArrayList<>();
+		expected.add(11);expected.add(9);expected.add(7);expected.add(5);expected.add(3);
+		
+		
+		assertEquals(obtained, expected);
+		
+		/*BTTSC5();
+		obtained = (ArrayList<Integer>) tree.searchList(10, ComparisonCriteria.EQUAL);
+		
+		expected = new ArrayList<>();		
+		
+		assertEquals(obtained, expected);*/	
+		
+		BTTSC5();
+		obtained = (ArrayList<Integer>) tree.searchList(7, ComparisonCriteria.GREATER);
+		
+		expected = new ArrayList<>();		
+		expected.add(9);expected.add(11);expected.add(13);expected.add(15);
+		
+		assertEquals(obtained, expected);
+		
+		BTTSC5();
+		obtained = (ArrayList<Integer>) tree.searchList(7, ComparisonCriteria.GREATER_EQUAL);
+		
+		expected = new ArrayList<>();		
+		expected.add(7);expected.add(9);expected.add(11);expected.add(13);expected.add(15);
+		
+		assertEquals(obtained, expected);
 	}
 	
 	//@Test
