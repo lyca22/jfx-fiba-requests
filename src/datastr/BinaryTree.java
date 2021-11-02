@@ -46,7 +46,7 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 			}
 		}
 	}
-
+	
 	@Override
 	public Node<E, P> search(E element, P parameter) {
 		return search(root, element, parameter);
@@ -157,7 +157,7 @@ public class BinaryTree<E extends Comparable<E>, P extends Comparable<P>> implem
 
 	private ArrayList<E> minorEqualSearchList(Node<E, P> current, P parameter, ArrayList<E> list){
 		if(current != null) {
-			if(current.getSearchParameter().compareTo(parameter) <= 0) {
+			if(current.getSearchParameter().compareTo(parameter) < 0) {
 				list = minorEqualSearchList(current.getRight(), parameter, list);
 				list.add(current.getElement());
 			}
