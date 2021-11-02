@@ -304,8 +304,12 @@ public class FIBARequestsController {
     public void seacrhByStat(ActionEvent event) {
     	if(!tfStatValue.getText().isEmpty()) {
     		Double value = Double.valueOf(tfStatValue.getText());
+    		long start = System.currentTimeMillis();
     		List<Player> players = fiba.searchCriteria(chboxStat.getValue(), value, chboxCriterion.getValue());
+    		long end = System.currentTimeMillis();
+    		long time = end - start;
     		initializePlayersTable(players);
+    		lblTime.setText(time + "");
     	}
     }
     
