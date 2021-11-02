@@ -3,25 +3,32 @@ package ui;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXToggleButton;
 
+import datastr.ComparisonCriteria;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Tooltip;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import model.FIBARequests;
 import model.Player;
+import model.TreeCriteria;
 
 public class FIBARequestsController {
 
@@ -77,16 +84,43 @@ public class FIBARequestsController {
     private JFXTextField tfStatValue;
 
     @FXML
-    private JFXComboBox<?> chboxCriterion;
+    private JFXComboBox<ComparisonCriteria> chboxCriterion;
 
     @FXML
-    private TableView<?> tvPlayers;
+    private TableView<Player> tvPlayers;
 
     @FXML
-    private JFXComboBox<?> chboxStat;
+    private TableColumn<Player, String> colName;
+
+    @FXML
+    private TableColumn<Player, Integer> colAge;
+
+    @FXML
+    private TableColumn<Player, String> colTeam;
+
+    @FXML
+    private TableColumn<Player, Double> colScore;
+
+    @FXML
+    private TableColumn<Player, Double> colBlocks;
+
+    @FXML
+    private TableColumn<Player, Double> colSteals;
+
+    @FXML
+    private TableColumn<Player, Double> colBounces;
+    
+    @FXML
+    private TableColumn<Player, Double> colAssists;
+    
+    @FXML
+    private JFXComboBox<TreeCriteria> chboxStat;
     
     @FXML
     private JFXButton btnSaveChanges;
+    
+    @FXML
+    private Label lblTime;
     
     public FIBARequestsController(FIBARequests fiba) {
 		this.fiba = fiba;
@@ -250,6 +284,21 @@ public class FIBARequestsController {
     @FXML
     public void seacrhByStat(ActionEvent event) {
 
+    }
+    
+    public void initializePlayersTable(ArrayList<Player> players) {
+    	ObservableList<Player> playersList = FXCollections.observableArrayList(players);
+    	
+    	colName.setCellValueFactory(new PropertyValueFactory<Player,String>("Name"));
+    	colAge.setCellValueFactory(new PropertyValueFactory<Player,Integer>("Age"));
+    	colTeam.setCellValueFactory(new PropertyValueFactory<Player,String>("Team"));
+    	colScore.setCellValueFactory(new PropertyValueFactory<Player,Double>("Score"));
+    	colBlocks.setCellValueFactory(new PropertyValueFactory<Player,Double>("Blocks"));
+    	colSteals.setCellValueFactory(new PropertyValueFactory<Player,Double>("Steals"));
+    	colBounces.setCellValueFactory(new PropertyValueFactory<Player,Double>("Bounces"));
+    	colAssists.setCellValueFactory(new PropertyValueFactory<Player,Double>("Assists"));
+    	
+    	tvPlayers.setItems(playersList);
     }
     
 }
