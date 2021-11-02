@@ -178,9 +178,27 @@ public class FIBARequestsController {
 		
 		mainPane.getChildren().clear();
 		mainPane.getChildren().setAll(searchStat);
+		loadChoiceStats();
+		laodChoiceCriterion();
     }
 
-    @FXML
+    private void laodChoiceCriterion() {
+		ComparisonCriteria[] criteria = {ComparisonCriteria.MINOR, ComparisonCriteria.MINOR_EQUAL,
+										 ComparisonCriteria.EQUAL, ComparisonCriteria.GREATER,
+										 ComparisonCriteria.GREATER_EQUAL};
+		
+		chboxCriterion.getItems().setAll(criteria);
+	}
+
+	private void loadChoiceStats() {
+		TreeCriteria[] stats = {TreeCriteria.ASSISTS, TreeCriteria.BLOCKS,
+								TreeCriteria.BOUNCES, TreeCriteria.SCORE,
+								TreeCriteria.STEALS};
+
+		chboxStat.getItems().setAll(stats);
+	}
+
+	@FXML
     public void loadSearchPlayer(ActionEvent event) throws IOException {
     	FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("searchPlayerPane.fxml"));
 		fxmlLoader.setController(this);
