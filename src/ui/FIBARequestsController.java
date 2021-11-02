@@ -319,11 +319,11 @@ public class FIBARequestsController {
     	colName.setCellValueFactory(new PropertyValueFactory<Player,String>("Name"));
     	colAge.setCellValueFactory(new PropertyValueFactory<Player,Integer>("Age"));
     	colTeam.setCellValueFactory(new PropertyValueFactory<Player,String>("Team"));
-    	colScore.setCellValueFactory(new PropertyValueFactory<Player,Double>("Score"));
-    	colBlocks.setCellValueFactory(new PropertyValueFactory<Player,Double>("Blocks"));
-    	colSteals.setCellValueFactory(new PropertyValueFactory<Player,Double>("Steals"));
-    	colBounces.setCellValueFactory(new PropertyValueFactory<Player,Double>("Bounces"));
-    	colAssists.setCellValueFactory(new PropertyValueFactory<Player,Double>("Assists"));
+    	colScore.setCellValueFactory(new PropertyValueFactory<Player,Double>("AverageScore"));
+    	colBlocks.setCellValueFactory(new PropertyValueFactory<Player,Double>("AverageBlocks"));
+    	colSteals.setCellValueFactory(new PropertyValueFactory<Player,Double>("AverageSteals"));
+    	colBounces.setCellValueFactory(new PropertyValueFactory<Player,Double>("AverageBounces"));
+    	colAssists.setCellValueFactory(new PropertyValueFactory<Player,Double>("AverageAssists"));
     	
     	tvPlayers.setItems(playersList);
     }
