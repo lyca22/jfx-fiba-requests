@@ -1,27 +1,31 @@
 package datastr;
 
+import java.util.ArrayList;
+
 public class Node<E, P extends Comparable<P>> implements Comparable<Node<E, P>>{
 
-	private E element;
+	private ArrayList<E> element;
 	private P searchParameter;
 	private Node<E, P> left;
 	private Node<E, P> right;
 	private Node<E, P> parent;
 
 	public Node(E element) {
-		setElement(element);
+		setElement(new ArrayList<E>());
+		this.element.add(element);
 	}
 
 	public Node(E element, P searchParameter) {
-		setElement(element);
+		setElement(new ArrayList<E>());
+		this.element.add(element);
 		setSearchParameter(searchParameter);
 	}
 
-	public E getElement() {
+	public ArrayList<E> getElement() {
 		return element;
 	}
 
-	public void setElement(E element) {
+	public void setElement(ArrayList<E> element) {
 		this.element = element;
 	}
 

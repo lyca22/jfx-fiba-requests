@@ -155,7 +155,7 @@ public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>
 		if(current != null) {
 			if(current.getSearchParameter().compareTo(parameter) < 0) {
 				list = minorSearchList(current.getRight(), parameter, list);
-				list.add(current.getElement());
+				list.addAll(current.getElement());
 			}
 			list = minorSearchList(current.getLeft(), parameter, list);
 		}
@@ -166,7 +166,7 @@ public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>
 		if(current != null) {
 			if(current.getSearchParameter().compareTo(parameter) <= 0) {
 				list = minorEqualSearchList(current.getRight(), parameter, list);
-				list.add(current.getElement());
+				list.addAll(current.getElement());
 			}
 			list = minorEqualSearchList(current.getLeft(), parameter, list);
 		}
@@ -177,7 +177,7 @@ public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>
 		if(current != null) {
 			if(current.getSearchParameter().compareTo(parameter) == 0) {
 				list = equalSearchList(current.getLeft(), parameter, list);
-				list.add(current.getElement());
+				list.addAll(current.getElement());
 			}else if(current.getSearchParameter().compareTo(parameter) < 0){
 				list = equalSearchList(current.getRight(), parameter, list);
 			}else {
@@ -191,7 +191,7 @@ public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>
 		if(current != null) {
 			if(current.getSearchParameter().compareTo(parameter) >= 0) {
 				list = greaterEqualSearchList(current.getLeft(), parameter, list);
-				list.add(current.getElement());
+				list.addAll(current.getElement());
 			}
 			list = greaterEqualSearchList(current.getRight(), parameter, list);
 		}
@@ -202,7 +202,7 @@ public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>
 		if(current != null) {
 			if(current.getSearchParameter().compareTo(parameter) > 0) {
 				list = greaterSearchList(current.getLeft(), parameter, list);
-				list.add(current.getElement());
+				list.addAll(current.getElement());
 			}
 			list = greaterSearchList(current.getRight(), parameter, list);
 		}
@@ -210,9 +210,9 @@ public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>
 	}
 
 	@Override
-	public E getMinimum() {
+	public ArrayList<E> getMinimum() {
 		Node<E, P> current = root;
-		E minimum = null;
+		ArrayList<E> minimum = null;
 		while(current != null) {
 			minimum = current.getElement();
 			current = current.getLeft();
@@ -221,9 +221,9 @@ public class BinaryTree<E, P extends Comparable<P>> implements IBinaryTree<E, P>
 	}
 
 	@Override
-	public E getMaximum() {
+	public ArrayList<E> getMaximum() {
 		Node<E, P> current = root;
-		E maximum = null;
+		ArrayList<E> maximum = null;
 		while(current != null) {
 			maximum = current.getElement();
 			current = current.getRight();
