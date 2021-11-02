@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import datastr.BinaryTree;
+import datastr.Node;
 
 class BinaryTreeTest {
 
@@ -98,6 +99,31 @@ class BinaryTreeTest {
 		assertTrue(tree.getRoot().getRight().getRight().getElement().size()==2);
 	}
 
+	@Test
+	void testSearch() throws Exception {
+		Node<Integer, Integer> foundNode;
+		
+		BTTSC1();
+		foundNode = tree.search(7);
+		
+		assertTrue(foundNode == null);
+		
+		BTTSC2();
+		foundNode = tree.search(7);
+		
+		assertTrue(foundNode != null);
+		assertTrue(foundNode.getSearchParameter() == 7);
+		
+		BTTSC2();
+		foundNode = tree.search(5);
+		
+		assertTrue(foundNode == null);
+		
+		BTTSC5();
+		foundNode = tree.search(10);
+		
+		assertTrue(foundNode == null);
+	}
 	
 	@Test
 	void testDelete() throws Exception {
@@ -122,30 +148,14 @@ class BinaryTreeTest {
 		assertEquals(tree.getRoot().getLeft().getSearchParameter(), 3);
 
 		BTTSC5();
-		System.out.println("***"+tree.getRoot().getPredecessor().getSearchParameter());
+		tree.delete(9, 9); 
+		 
+		assertTrue(tree.getRoot().getSearchParameter() == 11);
+	}
+	
+	@Test
+	void testsearchList() {
 		
-		
-		System.out.println(tree.getRoot().getSearchParameter());
-		System.out.println(tree.getRoot().getLeft().getSearchParameter());
-		System.out.println(tree.getRoot().getRight().getSearchParameter());
-		
-		System.out.println(tree.getRoot().getLeft().getLeft().getSearchParameter());
-		System.out.println(tree.getRoot().getLeft().getRight().getSearchParameter());
-		
-		System.out.println(tree.getRoot().getRight().getLeft().getSearchParameter());
-		System.out.println(tree.getRoot().getRight().getRight().getSearchParameter());
-		tree.delete(9, 9);
-		System.out.println("***");
-		System.out.println(tree.getRoot().getSearchParameter());
-		System.out.println(tree.getRoot().getLeft().getSearchParameter());
-		System.out.println(tree.getRoot().getRight().getSearchParameter());
-		
-		System.out.println(tree.getRoot().getLeft().getLeft().getSearchParameter());
-		System.out.println(tree.getRoot().getLeft().getRight().getSearchParameter());
-		
-		System.out.println(tree.getRoot().getRight().getLeft().getSearchParameter());
-		System.out.println(tree.getRoot().getRight().getRight().getSearchParameter());
-		//assertEquals(tree.getRoot().getSearchParameter(), 9);
 	}
 	
 	//@Test
